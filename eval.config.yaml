@@ -1,0 +1,50 @@
+# CodeBoss Evaluation Configuration
+# This file controls coaching behavior and evaluation parameters
+# Changes take effect on next config reload (no deployment needed)
+
+# Coaching parameters - control how the AI coach behaves
+coaching:
+  # Minimum correct answers before allowing phase transition (2-10)
+  # Also used for final phase completion check
+  min_questions_per_phase: 4 
+
+  # Confidence threshold for phase advancement (0.5-1.0)
+  # AI must have this confidence level to advance a student
+  confidence_threshold: 0.85
+
+  # Whether to ask probing questions after correct answers
+  # When true, AI will ask follow-up questions to verify understanding
+  probe_correct_answers: true
+
+  # Whether to require reasoning in student answers
+  require_reasoning: true
+
+  # Productive struggle score ideal range
+  # Questions should challenge students but not frustrate them
+  struggle_min: 0.4
+  struggle_max: 0.7
+
+# Judge configuration - Claude model for evaluation
+judge:
+  # Model to use for judging (decorrelated from GPT-4o coaching)
+  model: claude-sonnet-4-20250514
+
+  # Max tokens for judge response
+  max_tokens: 1024
+
+# Criteria weights for aggregate scoring (should sum to 1.0)
+criteria_weights:
+  # How well phase transitions are timed
+  phase_transition_timing: 0.20
+
+  # How relevant questions are to the phase/problem
+  question_relevance: 0.25
+
+  # How well difficulty matches student ability
+  difficulty_calibration: 0.20
+
+  # How accurate and helpful feedback is
+  feedback_accuracy: 0.20
+
+  # How well coach recovers from wrong answers
+  recovery_quality: 0.15

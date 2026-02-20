@@ -1,0 +1,83 @@
+{
+  "workflow_version": "1.2.0",
+  "timestamps": {
+    "started": "2026-01-05T00:00:00Z",
+    "last_updated": "2026-01-05T00:10:00Z",
+    "completed": "2026-01-05T00:10:00Z"
+  },
+  "mode": "initial_scan",
+  "scan_level": "deep",
+  "status": "completed",
+  "project_root": "/Users/ubervincent/Desktop/Projects/codeboss",
+  "output_folder": "/Users/ubervincent/Desktop/Projects/codeboss/docs",
+  "completed_steps": [
+    {
+      "step": "step_1",
+      "status": "completed",
+      "timestamp": "2026-01-05T00:01:00Z",
+      "summary": "Classified as monolith with 1 part, project_type: web"
+    },
+    {
+      "step": "step_2",
+      "status": "completed",
+      "timestamp": "2026-01-05T00:02:00Z",
+      "summary": "Found 21+ existing docs including CLAUDE.md, product-plan/, supabase/"
+    },
+    {
+      "step": "step_3",
+      "status": "completed",
+      "timestamp": "2026-01-05T00:03:00Z",
+      "summary": "Tech stack: Next.js 15, TypeScript, Tailwind, Supabase, OpenAI"
+    },
+    {
+      "step": "step_4",
+      "status": "completed",
+      "timestamp": "2026-01-05T00:05:00Z",
+      "summary": "Analyzed: 7 server actions, 21+ data functions, 21 UI components"
+    },
+    {
+      "step": "step_5",
+      "status": "completed",
+      "timestamp": "2026-01-05T00:10:00Z",
+      "summary": "Generated 7 documentation files"
+    }
+  ],
+  "current_step": "completed",
+  "findings": {
+    "project_classification": "monolith, 1 part, Next.js 15 web app",
+    "existing_docs_count": 21,
+    "technology_stack": "Next.js 15 on TypeScript with Tailwind, Supabase, OpenAI",
+    "server_actions": 7,
+    "data_functions": 21,
+    "ui_components": 21
+  },
+  "outputs_generated": [
+    "project-scan-report.json",
+    "index.md",
+    "project-context.md",
+    "technology-stack.md",
+    "architecture-patterns.md",
+    "api-reference.md",
+    "data-models.md",
+    "component-inventory.md"
+  ],
+  "project_types": [
+    {
+      "part_id": "main",
+      "project_type_id": "web",
+      "display_name": "Next.js 15 Web Application"
+    }
+  ],
+  "project_parts": [
+    {
+      "part_id": "main",
+      "root_path": "/Users/ubervincent/Desktop/Projects/codeboss",
+      "project_type_id": "web",
+      "framework": "Next.js 15",
+      "language": "TypeScript",
+      "styling": "Tailwind CSS",
+      "database": "Supabase",
+      "ai": "OpenAI API"
+    }
+  ]
+}

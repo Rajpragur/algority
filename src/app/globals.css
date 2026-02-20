@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: var(--font-outfit), system-ui, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-syne), sans-serif;
+  }
+}
+
+.font-syne {
+  font-family: var(--font-syne), sans-serif;
+}
+
+.font-outfit {
+  font-family: var(--font-outfit), sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.premium-text {
+  @apply font-light tracking-[0.05em] leading-[1.6];
+}
+
+/* Button fill animation for "Next Question" delay */
+@keyframes fillRight {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}

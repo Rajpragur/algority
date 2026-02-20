@@ -31,6 +31,7 @@ interface ActionButton {
 }
 
 interface ToasterProps {
+    id?: string | number;
     title?: string;
     message: string;
     variant?: Variant;
@@ -43,23 +44,23 @@ interface ToasterProps {
 
 const variantStyles: Record<Variant, string> = {
     default: 'bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white',
-    success: 'bg-emerald-50 dark:bg-neutral-900 border-emerald-500/20 dark:border-emerald-500/30 text-emerald-900 dark:text-emerald-400',
-    error: 'bg-red-50 dark:bg-neutral-900 border-red-500/20 dark:border-red-500/30 text-red-900 dark:text-red-400',
-    warning: 'bg-amber-50 dark:bg-neutral-900 border-amber-500/20 dark:border-amber-500/30 text-amber-900 dark:text-amber-400',
+    success: 'bg-emerald-500 text-white border-emerald-600 dark:border-emerald-400',
+    error: 'bg-rose-500 text-white border-rose-600 dark:border-rose-400',
+    warning: 'bg-amber-500 text-neutral-950 border-amber-600 dark:border-amber-400',
 };
 
 const titleColor: Record<Variant, string> = {
     default: 'text-neutral-900 dark:text-white',
-    success: 'text-emerald-700 dark:text-emerald-400',
-    error: 'text-red-700 dark:text-red-400',
-    warning: 'text-amber-700 dark:text-amber-400',
+    success: 'text-white',
+    error: 'text-white',
+    warning: 'text-neutral-950',
 };
 
 const iconColor: Record<Variant, string> = {
     default: 'text-neutral-500 dark:text-neutral-400',
-    success: 'text-emerald-600 dark:text-emerald-500',
-    error: 'text-red-600 dark:text-red-500',
-    warning: 'text-amber-600 dark:text-amber-500',
+    success: 'text-white opacity-90',
+    error: 'text-white opacity-90',
+    warning: 'text-neutral-950 opacity-90',
 };
 
 const variantIcons: Record<Variant, React.ComponentType<{ className?: string }>> = {
@@ -143,7 +144,7 @@ export const toast = {
                 title={options?.title || 'Success'}
                 {...options}
             />
-        ), { duration: options?.duration || 4000 });
+        ), { duration: options?.duration || 4000, id: options?.id });
     },
     error: (message: string, options?: Omit<ToasterProps, 'message' | 'variant'>) => {
         sonnerToast.custom((id) => (
@@ -154,7 +155,7 @@ export const toast = {
                 title={options?.title || 'Error'}
                 {...options}
             />
-        ), { duration: options?.duration || 4000 });
+        ), { duration: options?.duration || 4000, id: options?.id });
     },
     warning: (message: string, options?: Omit<ToasterProps, 'message' | 'variant'>) => {
         sonnerToast.custom((id) => (
@@ -165,7 +166,7 @@ export const toast = {
                 title={options?.title || 'Warning'}
                 {...options}
             />
-        ), { duration: options?.duration || 4000 });
+        ), { duration: options?.duration || 4000, id: options?.id });
     },
     info: (message: string, options?: Omit<ToasterProps, 'message' | 'variant'>) => {
         sonnerToast.custom((id) => (
@@ -176,7 +177,7 @@ export const toast = {
                 title={options?.title || 'Info'}
                 {...options}
             />
-        ), { duration: options?.duration || 4000 });
+        ), { duration: options?.duration || 4000, id: options?.id });
     },
     dismiss: sonnerToast.dismiss,
 };

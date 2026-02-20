@@ -16,7 +16,7 @@ import {
     IconCamera,
     IconPhoto
 } from '@tabler/icons-react'
-import { toast } from 'sonner'
+import { toast } from '@/components/ui/toaster'
 import { updateProfile } from './actions'
 import type { UserProfile, UserStats } from '@/lib/types'
 import Image from 'next/image'

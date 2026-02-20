@@ -9,7 +9,7 @@ import {
   IconDiamond,
   IconSettings
 } from '@tabler/icons-react'
-import { toast } from 'sonner'
+import { toast } from '@/components/ui/toaster'
 import { AppShell } from './AppShell'
 import type { NavigationItem } from './MainNav'
 import type { User } from './UserMenu'

@@ -284,18 +284,21 @@ export async function getUserRank(userId: string, totalSolved: number): Promise<
 export async function updateProfile(userId: string, data: Partial<UserProfile>) {
     const supabase = await createServerSupabaseClient()
 
+    const updateData: any = {
+        id: userId,
+        updated_at: new Date().toISOString(),
+    }
+
+    if (data.fullName !== undefined) updateData.full_name = data.fullName
+    if (data.college !== undefined) updateData.college = data.college
+    if (data.bio !== undefined) updateData.bio = data.bio
+    if (data.githubUrl !== undefined) updateData.github_url = data.githubUrl
+    if (data.avatarUrl !== undefined) updateData.avatar_url = data.avatarUrl
+    if (data.coverUrl !== undefined) updateData.cover_url = data.coverUrl
+
     const { error } = await supabase
         .from('profiles')
-        .upsert({
-            id: userId,
-            full_name: data.fullName,
-            college: data.college,
-            bio: data.bio,
-            github_url: data.githubUrl,
-            avatar_url: data.avatarUrl,
-            cover_url: data.coverUrl,
-            updated_at: new Date().toISOString(),
-        })
+        .upsert(updateData)
 
     if (error) throw error
     revalidatePath('/profile')

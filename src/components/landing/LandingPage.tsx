@@ -12,7 +12,7 @@ import {
 } from "@tabler/icons-react"
 import { useAuth } from '@/components/auth'
 import { checkIncompleteSession, createFreshSession, searchProblems } from '@/app/actions'
-import { toast } from 'sonner'
+import { toast } from '@/components/ui/toaster'
 import { cn } from "@/lib/utils"
 import type { Problem, Pattern, Difficulty, ProblemSet } from '@/lib/types'
 

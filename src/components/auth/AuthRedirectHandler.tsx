@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { toast } from 'sonner'
+import { toast } from '@/components/ui/toaster'
 import { useAuth } from './AuthProvider'
 
 /**

@@ -60,7 +60,7 @@ export function ChatInput({
             placeholder={placeholder}
             disabled={disabled}
             rows={1}
-            className="flex-1 bg-transparent border-0 resize-none focus:ring-0 text-[16px] text-neutral-200 placeholder:text-neutral-600 font-light py-4 custom-scrollbar max-h-[160px]"
+            className="flex-1 bg-transparent border-0 resize-none focus:ring-0 text-sm text-neutral-200 placeholder:text-neutral-600 font-light py-3 custom-scrollbar max-h-[160px]"
           />
 
           <div className="pb-2 pr-2">
@@ -68,8 +68,8 @@ export function ChatInput({
               onClick={handleSubmit}
               disabled={disabled || !inputValue.trim()}
               className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-500 ${inputValue.trim() && !disabled
-                  ? 'bg-emerald-500 text-black shadow-[0_0_20px_rgba(52,211,153,0.3)] hover:scale-105 active:scale-95'
-                  : 'bg-neutral-800 text-neutral-600 cursor-not-allowed'
+                ? 'bg-emerald-500 text-black shadow-[0_0_20px_rgba(52,211,153,0.3)] hover:scale-105 active:scale-95'
+                : 'bg-neutral-800 text-neutral-600 cursor-not-allowed'
                 }`}
             >
               <ArrowUp className={`w-5 h-5 stroke-[2.5] transition-transform duration-500 ${inputValue.trim() ? 'translate-y-0' : 'translate-y-0.5 opacity-50'}`} />

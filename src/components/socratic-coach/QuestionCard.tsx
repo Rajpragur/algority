@@ -12,7 +12,7 @@ function decodeUnicodeEscapes(text: string): string {
 
 const markdownComponents = {
   p: ({ children }: { children?: React.ReactNode }) => (
-    <p className="premium-text text-base text-neutral-300 mb-2 last:mb-0 leading-relaxed">{children}</p>
+    <p className="premium-text text-sm text-neutral-300 mb-1 last:mb-0 leading-relaxed">{children}</p>
   ),
   code: ({ children }: { children?: React.ReactNode }) => (
     <code className="px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 text-[13px] font-mono border border-emerald-500/20">{children}</code>
@@ -60,7 +60,7 @@ export function QuestionCard({
     >
       <div className="bg-neutral-900/40 rounded-3xl border border-neutral-800 overflow-hidden shadow-2xl backdrop-blur-sm">
         {/* Header */}
-        <div className="px-8 py-6 border-b border-neutral-800 bg-neutral-900/20">
+        <div className="px-6 py-4 border-b border-neutral-800 bg-neutral-900/20">
           <div className="flex items-center gap-3 mb-4">
             <HelpCircle className="w-4 h-4 text-emerald-400" />
             <span className="text-[10px] font-syne font-bold uppercase tracking-[0.3em] text-neutral-500">
@@ -73,7 +73,7 @@ export function QuestionCard({
         </div>
 
         {/* Options */}
-        <div className="p-4 space-y-2">
+        <div className="p-3 space-y-1.5">
           {question.options.map((option, idx) => {
             const isSel = selected.includes(option.id)
             const isCorrect = isAnswered && question.correctAnswer.includes(option.id)
@@ -87,7 +87,7 @@ export function QuestionCard({
                 transition={{ delay: idx * 0.05 }}
                 onClick={() => toggleOption(option.id)}
                 disabled={isAnswered}
-                className={`w-full group flex items-center gap-4 p-4 rounded-xl transition-all duration-300 relative overflow-hidden ${isCorrect
+                className={`w-full group flex items-center gap-3 p-3 rounded-xl transition-all duration-300 relative overflow-hidden ${isCorrect
                   ? 'bg-emerald-500/10 border border-emerald-500/30'
                   : isWrong
                     ? 'bg-red-500/10 border border-red-500/30'
@@ -117,7 +117,7 @@ export function QuestionCard({
                     }`}>
                     {option.label}
                   </span>
-                  <div className={`premium-text text-sm text-left truncate transition-colors ${isSel ? 'text-white' : 'text-neutral-400'
+                  <div className={`premium-text text-[13px] text-left truncate transition-colors ${isSel ? 'text-white' : 'text-neutral-400'
                     }`}>
                     <ReactMarkdown components={markdownComponents}>
                       {decodeUnicodeEscapes(option.text)}
@@ -144,14 +144,14 @@ export function QuestionCard({
 
         {/* Action Gate */}
         {!isAnswered && (
-          <div className="p-6 bg-black/20 border-t border-neutral-800 flex justify-between items-center">
+          <div className="px-6 py-4 bg-black/20 border-t border-neutral-800 flex justify-between items-center">
             <p className="text-[10px] font-syne font-bold uppercase tracking-widest text-neutral-600">
               {isMultiSelect ? 'Select multiple' : 'Select one'}
             </p>
             <button
               onClick={handleApply}
               disabled={selected.length === 0}
-              className={`flex items-center gap-3 px-8 py-3 rounded-lg font-syne font-bold text-[11px] uppercase tracking-[0.2em] transition-all ${selected.length > 0
+              className={`flex items-center gap-3 px-6 py-2.5 rounded-lg font-syne font-bold text-[10px] uppercase tracking-[0.2em] transition-all ${selected.length > 0
                 ? 'bg-white text-black hover:bg-emerald-400 shadow-[0_0_20px_rgba(255,255,255,0.1)]'
                 : 'bg-neutral-800 text-neutral-500 cursor-not-allowed opacity-50'
                 }`}

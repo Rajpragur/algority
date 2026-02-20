@@ -30,7 +30,7 @@ export function WelcomeState({ problem, onStartSession, isStarting }: WelcomeSta
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-2xl w-full text-center space-y-12 relative z-10"
+        className="max-w-xl w-full text-center space-y-8 relative z-10"
       >
         {/* Visual Identity */}
         <div className="relative inline-block">
@@ -39,13 +39,13 @@ export function WelcomeState({ problem, onStartSession, isStarting }: WelcomeSta
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             className="absolute inset-0 bg-gradient-to-tr from-emerald-500 to-blue-500 opacity-20 blur-2xl rounded-full"
           />
-          <div className="relative w-24 h-24 rounded-[2rem] bg-neutral-900 border border-neutral-800 flex items-center justify-center shadow-2xl">
-            <Zap className="w-10 h-10 text-emerald-400 fill-current" />
+          <div className="relative w-16 h-16 rounded-2xl bg-neutral-900 border border-neutral-800 flex items-center justify-center shadow-2xl">
+            <Zap className="w-7 h-7 text-emerald-400 fill-current" />
           </div>
         </div>
 
-        <div className="space-y-4">
-          <h2 className="text-4xl font-syne font-bold text-white uppercase tracking-tight leading-none">
+        <div className="space-y-3">
+          <h2 className="text-3xl font-syne font-bold text-white uppercase tracking-tight leading-none">
             Initialize Synthesis
           </h2>
           <p className="premium-text text-neutral-400 text-lg max-w-md mx-auto leading-relaxed">

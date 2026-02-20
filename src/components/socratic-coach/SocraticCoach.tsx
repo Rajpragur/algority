@@ -384,7 +384,7 @@ export function SocraticCoach({
           {!isInitialized ? (
             <WelcomeState problem={problem} onStartSession={onStartSession} isStarting={false} />
           ) : (
-            <div className="max-w-4xl mx-auto px-8 py-20 w-full space-y-16">
+            <div className="max-w-4xl mx-auto px-8 py-10 w-full space-y-10">
               <AnimatePresence mode="popLayout">
                 {messages.map((message, index) => {
                   if (message.type === 'question') {
@@ -402,7 +402,7 @@ export function SocraticCoach({
                         initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
-                        className="space-y-8"
+                        className="space-y-6"
                       >
                         <div className="flex items-center gap-4 mb-4">
                           <div className="h-[1px] flex-1 bg-neutral-800" />
@@ -435,12 +435,12 @@ export function SocraticCoach({
                         key={message.id}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="flex gap-6 max-w-3xl"
+                        className="flex gap-4 max-w-3xl"
                       >
                         <div className="w-10 h-10 rounded-xl bg-emerald-400/10 border border-emerald-400/20 flex items-center justify-center shrink-0">
                           <BrainCircuit className="w-5 h-5 text-emerald-400" />
                         </div>
-                        <div className="premium-text text-neutral-200 text-xl leading-relaxed/loose font-light pt-1">
+                        <div className="premium-text text-neutral-200 text-lg leading-relaxed font-light pt-1">
                           {message.content}
                         </div>
                       </motion.div>

@@ -13,7 +13,7 @@ function decodeUnicodeEscapes(text: string): string {
 
 const markdownComponents = {
     p: ({ children }: { children?: React.ReactNode }) => (
-        <p className="premium-text text-xl leading-relaxed text-neutral-200 font-light">{children}</p>
+        <p className="premium-text text-base leading-relaxed text-neutral-200 font-light">{children}</p>
     ),
 }
 
@@ -28,20 +28,20 @@ export function ProbeQuestionCard({
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className={`p-10 rounded-3xl border transition-all duration-700 ${isAnswered
-                    ? 'bg-neutral-900/10 border-neutral-800 opacity-60'
-                    : 'bg-emerald-500/[0.02] border-emerald-500/10 shadow-[0_30px_100px_rgba(52,211,153,0.03)]'
+            className={`p-6 rounded-3xl border transition-all duration-700 ${isAnswered
+                ? 'bg-neutral-900/10 border-neutral-800 opacity-60'
+                : 'bg-emerald-500/[0.02] border-emerald-500/10 shadow-[0_30px_100px_rgba(52,211,153,0.03)]'
                 }`}
         >
-            <div className="flex gap-8 items-start">
-                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 border ${isAnswered
-                        ? 'bg-neutral-900 border-neutral-800'
-                        : 'bg-emerald-500/10 border-emerald-500/20'
+            <div className="flex gap-4 items-start">
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border ${isAnswered
+                    ? 'bg-neutral-900 border-neutral-800'
+                    : 'bg-emerald-500/10 border-emerald-500/20'
                     }`}>
-                    <Brain className={`w-7 h-7 ${isAnswered ? 'text-neutral-700' : 'text-emerald-400'}`} />
+                    <Brain className={`w-5 h-5 ${isAnswered ? 'text-neutral-700' : 'text-emerald-400'}`} />
                 </div>
 
-                <div className="flex-1 space-y-6">
+                <div className="flex-1 space-y-4">
                     <div className="flex items-center gap-4">
                         <span className={`text-[11px] font-syne font-bold uppercase tracking-[0.4em] ${isAnswered ? 'text-neutral-600' : 'text-emerald-500/60'
                             }`}>

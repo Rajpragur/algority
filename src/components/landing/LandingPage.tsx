@@ -383,6 +383,41 @@ export function LandingPage({ problems, patterns, problemSets }: LandingPageProp
         </div>
       </section>
 
+      {/* Footer Section */}
+      <footer className="px-4 py-12 border-t border-slate-200 dark:border-slate-800">
+        <div className="mx-auto max-w-7xl flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-2">
+            <span className="text-xl font-syne font-bold uppercase tracking-tight text-neutral-900 dark:text-white">
+              Algority<span className="text-emerald-500">.</span>
+            </span>
+            <span className="text-xs text-neutral-500 dark:text-neutral-500 font-light">
+              © 2026 Algority. All rights reserved.
+            </span>
+          </div>
+
+          <div className="flex items-center gap-8">
+            <Link
+              href="/privacy"
+              className="text-xs font-syne font-bold uppercase tracking-widest text-neutral-600 hover:text-emerald-600 dark:text-neutral-400 dark:hover:text-emerald-400 transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/terms"
+              className="text-xs font-syne font-bold uppercase tracking-widest text-neutral-600 hover:text-emerald-600 dark:text-neutral-400 dark:hover:text-emerald-400 transition-colors"
+            >
+              Terms of Service
+            </Link>
+            <Link
+              href="/dev"
+              className="text-xs font-syne font-bold uppercase tracking-widest text-neutral-600 hover:text-emerald-600 dark:text-neutral-400 dark:hover:text-emerald-400 transition-colors"
+            >
+              Contact
+            </Link>
+          </div>
+        </div>
+      </footer>
+
       {/* Session Loading Modal */}
       {isPending && pendingProblem && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">

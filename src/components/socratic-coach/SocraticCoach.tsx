@@ -119,7 +119,7 @@ export function SocraticCoach({
     }
     return {
       handler: onAskQuestion,
-      placeholder: "Ask codeboss a question...",
+      placeholder: "Ask algority a question...",
     }
   }
 

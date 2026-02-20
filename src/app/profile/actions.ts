@@ -49,11 +49,12 @@ export async function getUserProfile(userId: string): Promise<UserProfile | null
     const currentUserEntry = leaderboard.find(u => u.id === userId)
     const rank = currentUserEntry ? currentUserEntry.rank : 0
 
-    const result = {
+    const result: UserProfile = {
         id: userId,
         fullName: fullName || 'User',
         email: email,
         avatarUrl: avatarUrl,
+        coverUrl: profile?.cover_url || null,
         college: profile?.college,
         bio: profile?.bio,
         githubUrl: profile?.github_url,
@@ -226,11 +227,12 @@ export async function getLeaderboard(): Promise<UserProfile[]> {
         counts[s.user_id] = (counts[s.user_id] || 0) + 1
     })
 
-    const leaderboard = profiles.map(p => ({
+    const leaderboard: UserProfile[] = profiles.map(p => ({
         id: p.id,
         fullName: p.full_name || 'Anonymous',
         email: '', // Don't leak emails
         avatarUrl: p.avatar_url,
+        coverUrl: p.cover_url || null,
         college: p.college,
         bio: p.bio,
         githubUrl: p.github_url,
@@ -290,6 +292,8 @@ export async function updateProfile(userId: string, data: Partial<UserProfile>) 
             college: data.college,
             bio: data.bio,
             github_url: data.githubUrl,
+            avatar_url: data.avatarUrl,
+            cover_url: data.coverUrl,
             updated_at: new Date().toISOString(),
         })
 

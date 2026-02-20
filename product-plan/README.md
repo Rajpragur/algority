@@ -1,6 +1,6 @@
-# CodeBoss Export Package
+# Algority Export Package
 
-This package contains everything you need to implement CodeBoss - an AI coaching tool for coding interview preparation.
+This package contains everything you need to implement Algority - an AI coaching tool for coding interview preparation.
 
 ## Quick Start
 

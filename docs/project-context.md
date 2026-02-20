@@ -1,10 +1,10 @@
 # Project Context
 
-> Critical rules and patterns for AI agents working on CodeBoss
+> Critical rules and patterns for AI agents working on Algority
 
 ## Project Identity
 
-**CodeBoss** - AI coaching tool for coding interview preparation using Socratic questioning.
+**Algority** - AI coaching tool for coding interview preparation using Socratic questioning.
 
 ## Tech Stack (Do Not Deviate)
 
@@ -207,7 +207,7 @@ const anthropic = new Anthropic()
 SUPABASE_SERVICE_ROLE_KEY=   # Full DB access for CLI
 ANTHROPIC_API_KEY=           # Claude judge model
 LANGSMITH_API_KEY=           # Tracing
-LANGSMITH_PROJECT=           # codeboss-eval (NOT codeboss-prod)
+LANGSMITH_PROJECT=           # algority-eval (NOT algority-prod)
 ```
 
 ### Anti-Patterns (Eval)
@@ -258,8 +258,8 @@ JUDGE0_API_KEY=           # Judge0 authentication (server-side only)
 ```typescript
 // src/lib/storage.ts
 const STORAGE_KEYS = {
-  draft: (problemId: number) => `codeboss:editor:draft:${problemId}`,
-  tests: (problemId: number) => `codeboss:editor:tests:${problemId}`,
+  draft: (problemId: number) => `algority:editor:draft:${problemId}`,
+  tests: (problemId: number) => `algority:editor:tests:${problemId}`,
 }
 
 interface EditorDraft {

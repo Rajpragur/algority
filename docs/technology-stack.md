@@ -1,6 +1,6 @@
 # Technology Stack
 
-> Complete technology inventory for CodeBoss
+> Complete technology inventory for Algority
 
 ## Core Stack
 

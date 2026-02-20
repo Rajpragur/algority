@@ -1,4 +1,4 @@
--- CodeBoss Database Schema
+-- Algority Database Schema
 -- Run this in Supabase SQL Editor to create tables
 
 -- Drop existing tables if re-running

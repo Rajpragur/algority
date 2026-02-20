@@ -1,6 +1,6 @@
 # Design System
 
-CodeBoss uses Tailwind CSS built-in colors and Google Fonts.
+Algority uses Tailwind CSS built-in colors and Google Fonts.
 
 ## Colors
 

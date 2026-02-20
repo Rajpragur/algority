@@ -1,8 +1,8 @@
-# CodeBoss - Product Overview
+# Algority - Product Overview
 
 ## Description
 
-CodeBoss is an AI coaching tool that teaches you how to think about coding problems, not just how to solve them. Using quiz-based Socratic questioning, it guides you to discover solutions yourself while building transferable problem-solving intuition.
+Algority is an AI coaching tool that teaches you how to think about coding problems, not just how to solve them. Using quiz-based Socratic questioning, it guides you to discover solutions yourself while building transferable problem-solving intuition.
 
 ## Problems & Solutions
 
@@ -47,7 +47,7 @@ Track patterns mastered, weak areas, and overall interview readiness.
 
 ### Entities
 
-- **User** - Someone using CodeBoss to practice and learn. Tracks progress across sessions, patterns mastered, and overall interview readiness.
+- **User** - Someone using Algority to practice and learn. Tracks progress across sessions, patterns mastered, and overall interview readiness.
 - **Problem** - A coding challenge with description, examples, constraints, and test cases. Tagged with algorithmic patterns.
 - **Pattern** - An algorithmic pattern like sliding window, two pointers, BFS/DFS, dynamic programming, etc.
 - **Session** - A user's coaching session on a specific problem. Captures the full Socratic Q&A dialogue.

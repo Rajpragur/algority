@@ -3,7 +3,7 @@
 ## Entities
 
 ### User
-Someone using CodeBoss to practice and learn. Tracks their progress across sessions, patterns mastered, and overall interview readiness.
+Someone using Algority to practice and learn. Tracks their progress across sessions, patterns mastered, and overall interview readiness.
 
 ### Problem
 A coding challenge the user can work on. Includes a description, examples, constraints, and test cases. Problems are tagged with the algorithmic patterns they exercise.

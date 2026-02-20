@@ -1,6 +1,6 @@
-# CodeBoss Implementation Prompt
+# Algority Implementation Prompt
 
-I need you to implement CodeBoss, an AI coaching tool for coding interview preparation.
+I need you to implement Algority, an AI coaching tool for coding interview preparation.
 
 ## Before You Start
 
@@ -12,7 +12,7 @@ Please ask me about:
 
 ## What You'll Build
 
-CodeBoss has 4 main sections:
+Algority has 4 main sections:
 1. **Problem Workspace** - Browse and select coding problems
 2. **Socratic Coach** - Quiz-based AI coaching
 3. **Code Editor** - Write, test, and submit solutions

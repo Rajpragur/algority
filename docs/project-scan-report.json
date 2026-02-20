@@ -8,8 +8,8 @@
   "mode": "initial_scan",
   "scan_level": "deep",
   "status": "completed",
-  "project_root": "/Users/ubervincent/Desktop/Projects/codeboss",
-  "output_folder": "/Users/ubervincent/Desktop/Projects/codeboss/docs",
+  "project_root": "/Users/ubervincent/Desktop/Projects/algority",
+  "output_folder": "/Users/ubervincent/Desktop/Projects/algority/docs",
   "completed_steps": [
     {
       "step": "step_1",
@@ -71,7 +71,7 @@
   "project_parts": [
     {
       "part_id": "main",
-      "root_path": "/Users/ubervincent/Desktop/Projects/codeboss",
+      "root_path": "/Users/ubervincent/Desktop/Projects/algority",
       "project_type_id": "web",
       "framework": "Next.js 15",
       "language": "TypeScript",

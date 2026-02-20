@@ -4,7 +4,7 @@ Build the persistent navigation shell that wraps all sections.
 
 ## Overview
 
-CodeBoss uses a collapsible sidebar navigation pattern. The sidebar provides access to all core sections plus settings, and can collapse to icon-only mode to maximize workspace.
+Algority uses a collapsible sidebar navigation pattern. The sidebar provides access to all core sections plus settings, and can collapse to icon-only mode to maximize workspace.
 
 ## Navigation Structure
 
@@ -97,7 +97,7 @@ interface UserMenuProps {
 
 - Sidebar background: slate-50 (light) / slate-900 (dark)
 - Border between sidebar and content: slate-200 (light) / slate-800 (dark)
-- Logo: "CodeBoss" with "Boss" in emerald-600
+- Logo: "Algority" with "Boss" in emerald-600
 
 ## Acceptance Criteria
 

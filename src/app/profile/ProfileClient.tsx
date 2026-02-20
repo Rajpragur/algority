@@ -12,13 +12,17 @@ import {
     IconCheck,
     IconX,
     IconActivity,
-    IconCrown
+    IconCrown,
+    IconCamera,
+    IconPhoto
 } from '@tabler/icons-react'
 import { toast } from 'sonner'
 import { updateProfile } from './actions'
 import type { UserProfile, UserStats } from '@/lib/types'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
+import { createClient } from '@/lib/supabase-browser'
+import { Loader2 } from 'lucide-react'
 
 // Mock university list for dropdown
 const KNOWN_UNIVERSITIES = [
@@ -42,18 +46,76 @@ const KNOWN_UNIVERSITIES = [
 interface ProfileClientProps {
     initialProfile: UserProfile
     initialStats: UserStats
-    initialLeaderboard: UserProfile[]
 }
 
-export function ProfileClient({ initialProfile, initialStats, initialLeaderboard }: ProfileClientProps) {
+export function ProfileClient({ initialProfile, initialStats }: ProfileClientProps) {
     const [profile, setProfile] = useState<UserProfile>(initialProfile)
     const [stats] = useState<UserStats>(initialStats)
-    const [leaderboard] = useState<UserProfile[]>(initialLeaderboard)
     const [isEditing, setIsEditing] = useState(false)
     const [editForm, setEditForm] = useState<Partial<UserProfile>>({})
     const [universitySearch, setUniversitySearch] = useState('')
     const [showUniDropdown, setShowUniDropdown] = useState(false)
     const [isSaving, setIsSaving] = useState(false)
+
+    const avatarInputRef = React.useRef<HTMLInputElement>(null)
+    const coverInputRef = React.useRef<HTMLInputElement>(null)
+    const [isUploadingAvatar, setIsUploadingAvatar] = useState(false)
+    const [isUploadingCover, setIsUploadingCover] = useState(false)
+
+    const uploadImage = async (file: File, bucket: 'avatars' | 'covers') => {
+        const supabase = createClient()
+        const fileExt = file.name.split('.').pop()
+        const fileName = `${Math.random().toString(36).substring(2)}.${fileExt}`
+        const filePath = `${profile.id}/${fileName}`
+
+        const { error: uploadError } = await supabase.storage
+            .from(bucket)
+            .upload(filePath, file)
+
+        if (uploadError) throw uploadError
+
+        const { data: { publicUrl } } = supabase.storage
+            .from(bucket)
+            .getPublicUrl(filePath)
+
+        return publicUrl
+    }
+
+    const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0]
+        if (!file) return
+
+        setIsUploadingAvatar(true)
+        try {
+            const url = await uploadImage(file, 'avatars')
+            setProfile(prev => ({ ...prev, avatarUrl: url }))
+            await updateProfile(profile.id, { avatarUrl: url })
+            toast.success('Avatar updated')
+        } catch (e) {
+            console.error(e)
+            toast.error('Failed to upload avatar')
+        } finally {
+            setIsUploadingAvatar(false)
+        }
+    }
+
+    const handleCoverChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0]
+        if (!file) return
+
+        setIsUploadingCover(true)
+        try {
+            const url = await uploadImage(file, 'covers')
+            setProfile(prev => ({ ...prev, coverUrl: url }))
+            await updateProfile(profile.id, { coverUrl: url })
+            toast.success('Cover image updated')
+        } catch (e) {
+            console.error(e)
+            toast.error('Failed to upload cover image')
+        } finally {
+            setIsUploadingCover(false)
+        }
+    }
 
     // Initialize edit form when starting edit
     const startEditing = () => {
@@ -70,7 +132,6 @@ export function ProfileClient({ initialProfile, initialStats, initialLeaderboard
     const handleSave = async () => {
         setIsSaving(true)
         try {
-            // Use current search value as college if selected
             const dataToSave = { ...editForm, college: universitySearch }
             await updateProfile(profile.id, dataToSave)
             setProfile(prev => ({ ...prev, ...dataToSave }))
@@ -94,7 +155,18 @@ export function ProfileClient({ initialProfile, initialStats, initialLeaderboard
     return (
         <div className="min-h-screen bg-neutral-50 dark:bg-black pb-20 font-outfit">
             {/* Hero Background - Full Width, Centered Focus */}
-            <div className="min-h-[45vh] pb-20 w-full bg-white dark:bg-black relative flex items-center justify-center overflow-hidden border-b border-neutral-200 dark:border-neutral-800">
+            <div className="min-h-[45vh] pb-20 w-full relative flex items-center justify-center overflow-hidden border-b border-neutral-200 dark:border-neutral-800">
+                {profile.coverUrl ? (
+                    <Image
+                        src={profile.coverUrl}
+                        alt="Cover"
+                        fill
+                        className="object-cover opacity-60 dark:opacity-40"
+                        priority
+                    />
+                ) : (
+                    <div className="absolute inset-0 bg-white dark:bg-black" />
+                )}
                 <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]" style={{
                     backgroundImage: 'radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)',
                     backgroundSize: '32px 32px'
@@ -104,13 +176,14 @@ export function ProfileClient({ initialProfile, initialStats, initialLeaderboard
                 <div className="absolute top-4 right-4 z-50 flex items-center gap-2">
                     {isEditing ? (
                         <>
-                            {/* Dummy functionality for Cover Image as per UI request */}
                             <button
                                 type="button"
-                                className="px-4 py-2 bg-white/10 backdrop-blur-md text-neutral-900 dark:text-white rounded-full text-xs font-medium hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors border border-neutral-200/20 shadow-sm"
-                                onClick={() => toast.info('Cover image customization coming soon!')}
+                                className="px-4 py-2 bg-white/10 backdrop-blur-md text-neutral-900 dark:text-white rounded-full text-xs font-medium hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors border border-neutral-200/20 shadow-sm flex items-center gap-1.5"
+                                onClick={() => coverInputRef.current?.click()}
+                                disabled={isUploadingCover}
                             >
-                                Change Cover
+                                {isUploadingCover ? <Loader2 className="h-3 w-3 animate-spin" /> : <IconPhoto className="h-3 w-3" />}
+                                <span>{isUploadingCover ? 'Uploading...' : 'Change Cover'}</span>
                             </button>
                             <button onClick={handleCancel} className="px-4 py-2 bg-neutral-200/80 dark:bg-neutral-800/80 backdrop-blur-md text-neutral-900 dark:text-white rounded-full text-xs font-medium hover:bg-neutral-300 dark:hover:bg-neutral-700 transition-colors">
                                 Cancel
@@ -155,12 +228,18 @@ export function ProfileClient({ initialProfile, initialStats, initialLeaderboard
                             {isEditing && (
                                 <div
                                     className="absolute inset-0 flex flex-col items-center justify-center cursor-pointer z-20 group-hover:scale-105 transition-transform duration-500"
-                                    onClick={() => toast.info('Avatar upload coming soon!')}
+                                    onClick={() => avatarInputRef.current?.click()}
                                 >
                                     <div className="bg-black/40 p-3 rounded-full backdrop-blur-md border border-white/20 mb-2 hover:bg-black/60 transition-colors">
-                                        <IconEdit className="h-5 w-5 text-white stroke-1" />
+                                        {isUploadingAvatar ? (
+                                            <Loader2 className="h-5 w-5 text-white animate-spin" />
+                                        ) : (
+                                            <IconCamera className="h-5 w-5 text-white stroke-1" />
+                                        )}
                                     </div>
-                                    <span className="text-[10px] uppercase tracking-widest text-white font-bold drop-shadow-md">Change</span>
+                                    <span className="text-[10px] uppercase tracking-widest text-white font-bold drop-shadow-md">
+                                        {isUploadingAvatar ? 'Uploading...' : 'Change'}
+                                    </span>
                                 </div>
                             )}
                         </div>
@@ -207,7 +286,6 @@ export function ProfileClient({ initialProfile, initialStats, initialLeaderboard
             </div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-20">
-
                 {/* Stats Row - Compact */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
                     <div className="bg-white dark:bg-neutral-900/40 backdrop-blur-xl rounded-2xl p-6 border border-neutral-200 dark:border-neutral-800 shadow-sm flex flex-col items-center justify-center text-center hover:border-emerald-500/30 transition-all duration-300">
@@ -264,8 +342,7 @@ export function ProfileClient({ initialProfile, initialStats, initialLeaderboard
                 </div>
 
                 {/* Content Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     {/* Left Column: Difficulty Breadwon (Stacked) & Recent Activity */}
                     <div className="space-y-6">
                         <div className="bg-white dark:bg-neutral-900 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-800 shadow-sm">
@@ -349,7 +426,7 @@ export function ProfileClient({ initialProfile, initialStats, initialLeaderboard
                         </div>
                     </div>
 
-                    {/* Middle Column: Study Plans */}
+                    {/* Right Column: Study Plans */}
                     <div className="space-y-6">
                         <div className="bg-white dark:bg-neutral-900 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-800 shadow-sm h-full">
                             <h3 className="text-sm font-medium text-neutral-900 dark:text-white mb-4 flex items-center gap-2">
@@ -378,52 +455,24 @@ export function ProfileClient({ initialProfile, initialStats, initialLeaderboard
                             </div>
                         </div>
                     </div>
-
-                    {/* Right Column: Leaderboard */}
-                    <div className="space-y-6">
-                        <div className="bg-white dark:bg-neutral-900 rounded-2xl p-6 border border-neutral-200 dark:border-neutral-800 shadow-sm">
-                            <h3 className="text-sm font-medium text-neutral-900 dark:text-white mb-4 flex items-center gap-2">
-                                <IconCrown className="h-4 w-4 text-amber-500" />
-                                Top Performers
-                            </h3>
-                            <div className="space-y-3">
-                                {leaderboard.map((user) => (
-                                    <div key={user.id} className={cn(
-                                        "flex items-center gap-3 p-2 rounded-xl transition-all",
-                                        user.id === profile.id ? "bg-neutral-100 dark:bg-neutral-800/50 ring-1 ring-emerald-500/20" : "hover:bg-neutral-50 dark:hover:bg-neutral-800/30"
-                                    )}>
-                                        <div className="w-6 text-center font-mono font-bold text-neutral-400 text-xs">
-                                            {user.rank === 1 ? '🥇' : user.rank === 2 ? '🥈' : user.rank === 3 ? '🥉' : `#${user.rank}`}
-                                        </div>
-                                        <div className="h-8 w-8 rounded-full bg-neutral-100 dark:bg-neutral-800 overflow-hidden ring-1 ring-neutral-200 dark:ring-neutral-700 flex items-center justify-center flex-shrink-0">
-                                            {user.avatarUrl ? (
-                                                <Image
-                                                    src={user.avatarUrl}
-                                                    width={32} height={32}
-                                                    alt={user.fullName || 'User'}
-                                                    className="object-cover h-full w-full"
-                                                />
-                                            ) : (
-                                                <IconUser className="h-4 w-4 text-neutral-400" />
-                                            )}
-                                        </div>
-                                        <div className="flex-1 min-w-0">
-                                            <div className="text-sm font-medium text-neutral-900 dark:text-white truncate">
-                                                {user.fullName}
-                                            </div>
-                                            <div className="text-[10px] text-neutral-500 dark:text-neutral-500 font-medium">
-                                                {user.totalSolved} problems solved
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
-
             </div>
+
+            {/* Hidden File Inputs */}
+            <input
+                type="file"
+                ref={avatarInputRef}
+                className="hidden"
+                accept="image/*"
+                onChange={handleAvatarChange}
+            />
+            <input
+                type="file"
+                ref={coverInputRef}
+                className="hidden"
+                accept="image/*"
+                onChange={handleCoverChange}
+            />
         </div>
     )
 }

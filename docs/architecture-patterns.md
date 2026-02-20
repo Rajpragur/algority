@@ -1,6 +1,6 @@
 # Architecture Patterns
 
-> Code patterns and conventions used in CodeBoss
+> Code patterns and conventions used in Algority
 
 ## Overall Architecture
 

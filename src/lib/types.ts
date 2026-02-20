@@ -374,6 +374,7 @@ export interface UserProfile {
   fullName: string | null
   email: string
   avatarUrl: string | null
+  coverUrl: string | null
   college: string | null
   bio: string | null
   githubUrl: string | null

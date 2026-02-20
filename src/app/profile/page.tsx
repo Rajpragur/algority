@@ -29,10 +29,9 @@ export default async function ProfilePage() {
         )
     }
 
-    const [profile, stats, leaderboard] = await Promise.all([
+    const [profile, stats] = await Promise.all([
         getUserProfile(user.id),
-        getUserStats(user.id),
-        getLeaderboard()
+        getUserStats(user.id)
     ])
 
     if (!profile || !stats) {
@@ -60,7 +59,6 @@ export default async function ProfilePage() {
         <ProfileClient
             initialProfile={profile}
             initialStats={stats}
-            initialLeaderboard={leaderboard}
         />
     )
 }

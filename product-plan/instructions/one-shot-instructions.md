@@ -1,6 +1,6 @@
-# CodeBoss - Complete Implementation Instructions
+# Algority - Complete Implementation Instructions
 
-This document combines all milestones for full implementation of CodeBoss.
+This document combines all milestones for full implementation of Algority.
 
 ---
 

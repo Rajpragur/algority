@@ -1,6 +1,6 @@
 # Component Inventory
 
-> UI components catalog for CodeBoss
+> UI components catalog for Algority
 
 ## Overview
 

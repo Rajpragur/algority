@@ -3,8 +3,8 @@
  */
 
 const STORAGE_KEYS = {
-  draft: (problemId: number) => `codeboss:editor:draft:${problemId}`,
-  customTests: (problemId: number) => `codeboss:editor:tests:${problemId}`,
+  draft: (problemId: number) => `algority:editor:draft:${problemId}`,
+  customTests: (problemId: number) => `algority:editor:tests:${problemId}`,
 }
 
 interface EditorDraft {
@@ -89,7 +89,7 @@ export function getAllDrafts(): Array<{ problemId: number; timestamp: number }> 
   if (typeof window === 'undefined') return []
 
   const drafts: Array<{ problemId: number; timestamp: number }> = []
-  const prefix = 'codeboss:editor:draft:'
+  const prefix = 'algority:editor:draft:'
 
   try {
     for (let i = 0; i < localStorage.length; i++) {

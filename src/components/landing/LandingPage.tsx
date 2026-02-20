@@ -193,10 +193,10 @@ export function LandingPage({ problems, patterns, problemSets }: LandingPageProp
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center px-4 pt-16 pb-12 md:pt-24 md:pb-16">
         {/* Headline */}
-        <h1 className="text-5xl font-syne font-bold uppercase tracking-tight text-neutral-900 dark:text-white sm:text-6xl md:text-7xl text-center max-w-5xl leading-tight drop-shadow-sm">
+        <h1 className="text-4xl font-syne font-bold uppercase tracking-tight text-neutral-900 dark:text-white sm:text-6xl md:text-7xl text-center max-w-5xl leading-tight drop-shadow-sm px-2">
           <span className="text-black dark:text-white">Stop Memorizing</span>
-          <br />
-          <span className="text-emerald-500">Start Understanding<span className="text-black dark:text-emerald-400">.</span></span>
+          <br className="hidden sm:block" />
+          <span className="text-emerald-500"> Start Understanding<span className="text-black dark:text-emerald-400">.</span></span>
         </h1>
 
         {/* Subheadline */}
@@ -340,7 +340,7 @@ export function LandingPage({ problems, patterns, problemSets }: LandingPageProp
             Follow these proven study lists used by thousands of engineers to land jobs at top companies
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 relative z-10 py-10 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 relative z-10 py-10 max-w-7xl mx-auto">
             {problemSets.map((set, index) => {
               // Select an icon based on the set ID or index
               const Icon = index === 0 ? IconTerminal2 : index === 1 ? IconEaseInOut : IconRouteAltLeft;
@@ -350,9 +350,10 @@ export function LandingPage({ problems, patterns, problemSets }: LandingPageProp
                   key={set.id}
                   href={`/problems?set=${set.id}`}
                   className={cn(
-                    "flex flex-col lg:border-r py-10 relative group/feature dark:border-neutral-800 border-neutral-200",
-                    (index === 0) && "lg:border-l dark:border-neutral-800", // First item needs left border
-                    "lg:border-b dark:border-neutral-800" // All items in this single row get bottom border
+                    "flex flex-col py-10 relative group/feature dark:border-neutral-800 border-neutral-200",
+                    "border-b lg:border-r",
+                    index === 0 && "lg:border-l",
+                    index % 2 === 0 && "md:border-l lg:border-l-0"
                   )}
                 >
                   <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-slate-50 dark:bg-slate-800/50 pointer-events-none" />

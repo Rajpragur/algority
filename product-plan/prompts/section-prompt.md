@@ -1,16 +1,16 @@
 # Section Implementation Prompt Template
 
-Use this template to implement CodeBoss one section at a time.
+Use this template to implement Algority one section at a time.
 
 ---
 
 ## Prompt for [SECTION NAME]
 
-I need you to implement the **[Section Name]** section of CodeBoss.
+I need you to implement the **[Section Name]** section of Algority.
 
 ### Context
 
-CodeBoss is an AI coaching tool for coding interview prep. I'm building it incrementally and this section is part of the larger application.
+Algority is an AI coaching tool for coding interview prep. I'm building it incrementally and this section is part of the larger application.
 
 **Previous sections implemented:**
 - [List any previously completed sections]
@@ -48,11 +48,11 @@ CodeBoss is an AI coaching tool for coding interview prep. I'm building it incre
 
 ## Example: Problem Workspace
 
-I need you to implement the **Problem Workspace** section of CodeBoss.
+I need you to implement the **Problem Workspace** section of Algority.
 
 ### Context
 
-CodeBoss is an AI coaching tool for coding interview prep. I've already completed:
+Algority is an AI coaching tool for coding interview prep. I've already completed:
 - Project setup with React + Vite + TypeScript
 - Tailwind CSS v4 configuration
 - App shell with sidebar navigation

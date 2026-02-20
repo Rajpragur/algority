@@ -1,4 +1,4 @@
-# CodeBoss Documentation
+# Algority Documentation
 
 > AI coaching tool for coding interview preparation using Socratic questioning
 
